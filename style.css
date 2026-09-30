@@ -1,0 +1,157 @@
+:root {
+      --board: #23443b;
+      --board-dark: #183129;
+      --chalk: #f3f1e7;
+      --paper: #fff4b8;
+      --margin-red: #d9534f;
+      --line-blue: #9bbbd9;
+      --ink: #2b3a67;
+      --yes: #f2c14e;
+      --no: #e8e6da;
+    }
+ 
+    * { 
+      box-sizing: border-box;
+    }
+ 
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--board-dark);
+      color: var(--chalk);
+      font-family: "Nunito", system-ui, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 48px;
+      gap: 24px;
+    }
+ 
+    .choice {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+ 
+    .audio-box {
+      width: 100%;
+      max-width: 560px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px dashed rgba(243, 241, 231, 0.4);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: grid;
+      gap: 10px;
+    }
+    .audio-box p { 
+      margin: 0; 
+      font-weight: 800; 
+    }
+    .audio-box audio {
+       width: 100%;
+       }
+ 
+    .board {
+      width: 100%;
+      max-width: 560px;
+      background: var(--board);
+      border: 10px solid #8a5a34;
+      border-radius: 8px;
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .board h1 {
+      font-family: "Caveat", cursive;
+      font-size: clamp(2rem, 7vw, 3rem);
+      font-weight: 700;
+      margin: 0 0 8px;
+      line-height: 1.1;
+    }
+    .board p { margin: 0 0 24px; opacity: 0.85; }
+ 
+    .buttons { display: flex; gap: 16px; justify-content: center; }
+ 
+    .btn {
+      font-weight: 800;
+      font-size: 1.15rem;
+      padding: 12px 36px;
+      border-radius: 999px;
+      cursor: pointer;
+      color: #1c1c1c;
+      user-select: none;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-yes { background: var(--yes); }
+    .btn-no  { background: var(--no); }
+ 
+    #ans-yes:focus-visible ~ .board .btn-yes,
+    #ans-no:focus-visible ~ .board .btn-no {
+      outline: 3px solid var(--chalk);
+      outline-offset: 3px;
+    }
+ 
+    .answer-no {
+      display: none;
+      margin: 24px 0 0;
+      font-family: "Caveat", cursive;
+      font-size: 1.6rem;
+    }
+ 
+    /* ---------- Letter (notebook paper) ---------- */
+    .letter {
+      display: none;
+      width: 100%;
+      max-width: 560px;
+      background:
+        linear-gradient(to right, transparent 54px, var(--margin-red) 54px, var(--margin-red) 56px, transparent 56px),
+        repeating-linear-gradient(to bottom, var(--paper) 0, var(--paper) 35px, var(--line-blue) 35px, var(--line-blue) 36px);
+      color: var(--ink);
+      font-family: "Caveat", cursive;
+      font-size: 1.6rem;
+      line-height: 36px;
+      padding: 36px 24px 36px 74px;
+      border-radius: 4px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+    .letter h2 { font-size: 2.2rem; line-height: 36px; margin: 0 0 36px; }
+    .letter p { margin: 0 0 36px; }
+    .letter .sign { text-align: right; margin-bottom: 0; }
+ 
+    /* ---------- Photo (polaroid style) ---------- */
+    .photo {
+      width: 220px;
+      max-width: 100%;
+      margin: 0 auto 36px;
+      padding: 10px 10px 8px;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transform: rotate(-2deg);
+      text-align: center;
+      line-height: 28px;
+      font-size: 1.3rem;
+    }
+    .photo img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      background: #ddd;
+    }
+ 
+    
+    #ans-yes:checked ~ .board  { 
+      display: none; 
+    }
+    #ans-yes:checked ~ .letter {
+      display: block; 
+    }
+    #ans-no:checked  ~ .board .answer-no { 
+      display: block; 
+    }
+ 
+    @media (max-width: 420px) {
+      .letter { 
+        padding-left: 64px; 
+        font-size: 1.4rem; 
+      }
+    }
